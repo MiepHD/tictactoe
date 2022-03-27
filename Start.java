@@ -14,9 +14,14 @@ import net.dv8tion.jda.api.JDABuilder;
 
 public class Start {
     static boolean debug;
+    static String token;
+    static Spielstatus spiel;
+    static String[] arguments;
     public static void main(String[] args) throws Exception {
+        arguments = args;
         System.out.println("Anmelden mit Token " + args[0] + "...");
-        JDA jda = JDABuilder.createDefault(args[0]).build();
+        token = args[0];
+        JDA jda = JDABuilder.createDefault(token).build();
         System.out.println("Erfolgreich angemeldet\nErstelle EventListener");
         jda.addEventListener(new MyEventListener());
         System.out.println("EventListener erfolgreich erstellt");
@@ -28,6 +33,14 @@ public class Start {
                 boolean debug = false;
             }
         }
-        new Spielstatus();
+        spiel = new Spielstatus();
+    }
+    public static void restart() {
+        spiel = null;
+        try {
+            main(arguments);
+        } catch (Exception exception) {
+            
+        }
     }
 }

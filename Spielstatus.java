@@ -32,9 +32,9 @@ public class Spielstatus {
     static String player2;
     static boolean begonnen;
     static Board board;
-    static ArrayList<Integer> data;
+    static ArrayList<Long> data;
     public Spielstatus() {
-        data = null;
+        data = new ArrayList<Long>();
         turn = "";
         board = new Board();
         ArrayGenerator generate = new ArrayGenerator();

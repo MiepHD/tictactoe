@@ -35,6 +35,11 @@ public class Main
             antwort = place.place(message, event);
             return antwort;
         }
+        if (message.startsWith("*to")) {
+            if (message.startsWith("*to")) {
+                antwort = Spielstatus.board.toggledarkmode();
+            }
+        }
         return antwort;
     }
 }

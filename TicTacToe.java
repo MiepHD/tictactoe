@@ -21,7 +21,7 @@ public class TicTacToe
         } else if (Spielstatus.player2 == null) {
             Spielstatus.player2 = event.getAuthor().getId();
             antwort = "Player zwei ist <@" + event.getAuthor().getId() + ">";
-            Versenden.sendMessage(event, antwort);
+            Nachricht.send(event, antwort);
             Spielstatus.begonnen = true;
             Spielstatus.board.generiereBoard();
             Spielstatus.turn = "p1";

@@ -56,6 +56,18 @@ public class Board
         map_feldgruppen = ArrayGenerator.mapFeldgruppen();
         winningconditions = ArrayGenerator.winningConditions();
     }
+    public String toggledarkmode() {
+        if (Board.board == null) {
+            if (white.equals(":white_large_square:")) {
+                white = ":black_large_square:";
+            } else {
+                white = ":white_large_square:";
+            }
+        } else {
+            return "Der Modus ist nur änderbar, solange kein Spiel läuft.";
+        }
+        return null;
+    }
     public String zeichneBoard() {
         System.out.println("Board: " + board);
         int i = 0;
@@ -100,7 +112,7 @@ public class Board
                 String spielfeld_text = "";
                 if (Gewonnen.Spiel(BigBoard.bigboard, winningconditions, symbol)) {
                     spielfeld_text = zeichneBoard();
-                    Versenden.sendMessage(event, spielfeld_text);
+                    Nachricht.send(event, spielfeld_text);
                     if (Spielstatus.player1 != Spielstatus.player2) {
                         Punkte.berechne(symbol, event, BigBoard.bigboard);
                     }
@@ -118,10 +130,12 @@ public class Board
                     }
                 }
                 if (besetzt == 9) {
-                    Versenden.sendMessage(event, antwort);
-                    return "Unentschieden!";
+                    Nachricht.send(event, antwort);
+                    Nachricht.send(event, "Unentschieden!");
+                    Start.restart();
+                    return null;
                 } else {
-                    Versenden.sendTemporaryMessage(event, antwort);
+                    Nachricht.sendTemporary(event, antwort);
                     return null;
                 }
             }
@@ -144,7 +158,7 @@ public class Board
         }
     }
     public void allGreen() {
-        for (int i = 0; i <= 81; i++) {
+        for (int i = 0; i <= 80; i++) {
             if (board.get(i) == white) {
                 board.set(i, green);
             }

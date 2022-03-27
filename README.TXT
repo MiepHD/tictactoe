@@ -1,12 +1,9 @@
 ------------------------------------------------------------------------
-Dies ist die README-Datei des Projekts. Hier sollten Sie Ihr Projekt
-beschreiben.
-Erzählen Sie dem Leser (jemand, der nichts über dieses Projekt weiss),
-alles, was er/sie wissen muss. Üblicherweise sollte der Kommentar 
-zumindest die folgenden Angaben umfassen:
+TicTacToe XXL
 ------------------------------------------------------------------------
 
+
 PROJEKTBEZEICHNUNG: TicTacToexxl Discord Bot
-VERSION oder DATUM: 27.03.2022, 0.8
-WIE IST DAS PROJEKT ZU STARTEN:
+VERSION oder DATUM: 27.03.2022, 1.0
+WIE IST DAS PROJEKT ZU STARTEN: Übergebe beim Starten als erstes Argument das Token, um den Bot zu starten.
 AUTOR(EN): Miep_HD
