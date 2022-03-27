@@ -16,11 +16,13 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
  * Setzt Symbol bei number.
  * 
  * zeichneGreen
+ * Zeichnet das ausgewählte große Feld (target) grün
  * 
  * allGreen
  * Zeichnet alles Grün, falls das Zielfeld bereits belegt ist.
  * 
  * feldFaerben
+ * Färbt das gewonnene Feld mit der entsprechenden Farbe ein
  * 
  * @author Miep_HD
  * @version 28.03.2022
