@@ -34,12 +34,12 @@ public class Board
     private String white;
     private String kreis;
     private String kreuz;
-    private String symbol;
+    static String symbol;
     private ArrayList<String> zahlen;
     private ArrayList<ArrayList<Integer>> feldgruppen;
     private ArrayList<ArrayList<Integer>> map_feldgruppen;
     private ArrayList<ArrayList<Integer>> winningconditions;
-    private ArrayList<String> bigboard;
+    
     public Board() {
         zahlen = ArrayGenerator.zahlen();
         egal = false;
@@ -49,7 +49,7 @@ public class Board
         kreis = ":o2:";
         kreuz = ":regional_indicator_x:";
         symbol = "";
-        bigboard = ArrayGenerator.bigBoard();
+        
         feldgruppen = ArrayGenerator.feldgruppen();
         map_feldgruppen = ArrayGenerator.mapFeldgruppen();
         winningconditions = ArrayGenerator.winningConditions();
@@ -90,44 +90,27 @@ public class Board
             boolean kleinfeldgewonnen = false;
             boolean spielgewonnen = false;
             if (Gewonnen.Kleinfeld(startfeld, map_feldgruppen, winningconditions, symbol)) {
-                if (Spielstatus.turn == "p1") {
-                    bigboard.set(new_target, "p2");
-                    symbol = "p2";
-                } else {
-                    bigboard.set(new_target, "p1");
-                    symbol = "p1";
-                }
+                BigBoard.update(new_target);
                 if (target == new_target) {
                     allGreen();
                 }
                 feldFaerben(startfeld);
                 String spielfeld_text = "";
-                if (Gewonnen.Spiel(bigboard, winningconditions, symbol)) {
+                if (Gewonnen.Spiel(BigBoard.bigboard, winningconditions, symbol)) {
                     spielfeld_text = zeichneBoard();
                     Versenden.sendMessage(event, spielfeld_text);
                     if (Spielstatus.player1 != Spielstatus.player2) {
-                        Punkte.berechne(symbol, event, bigboard);
+                        Punkte.berechne(symbol, event, BigBoard.bigboard);
                     }
                 }
+            }
+            if (!kleinfeldgewonnen) {
+                BigBoard.unentschieden(startfeld, kreis, kreuz, target);
             }
             int besetzt = 0;
-            if (!kleinfeldgewonnen) {
-                for (int x = 0; x <= 2; x++) {
-                    for (int y = 0; y <= 2; y++) {
-                        int zielfeld = startfeld + x + y * 9;
-                        if (board.get(zielfeld) == kreis || board.get(zielfeld) == kreuz) {
-                            besetzt++;
-                        }
-                    }
-                }
-                if (besetzt == 9) {
-                    bigboard.set(new_target, "/");
-                }
-            }
-            besetzt = 0;
             if (!spielgewonnen) {
                 antwort = zeichneBoard();
-                for (String element : bigboard) {
+                for (String element : BigBoard.bigboard) {
                     if (element != "p0") {
                         besetzt++;
                     }
@@ -181,7 +164,7 @@ public class Board
     }
     public void zeichneGreen(int target) {
         int startfeld = Feld.berechneStart(target);
-        if (bigboard.get(target) == "p0") {
+        if (BigBoard.bigboard.get(target) == "p0") {
             for (int i = 0; i <= 80; i++) {
                 if (board.get(i) == green) {
                     board.set(i, white);
