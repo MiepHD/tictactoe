@@ -1,10 +1,10 @@
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 /**
- * Beschreiben Sie hier die Klasse Versenden.
+ * Klasse versendet Nachrichten
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Miep_HD
+ * @version 28.03.2022
  */
 public class Versenden
 {

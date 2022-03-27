@@ -2,6 +2,12 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
+/**
+ * Wertet Nachricht aus und ruft Klasse Main auf, falls diese nicht von einem Bot kommt.
+ * 
+ * @author Miep_HD
+ * @version 28.03.2022
+ */
 public class MyEventListener extends ListenerAdapter {
     private Main main;
     public MyEventListener() {
