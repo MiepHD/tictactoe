@@ -1,11 +1,15 @@
 import java.util.ArrayList;
 
 /**
- * Beschreiben Sie hier die Klasse Gewonnen.
+ * Spiel
+ * Diese Methode prüft, ob der Player mit dem übergebenen Symbol gewonnen hat.
+ * 
+ * Kleinfeld
+ * Diese prüft, ob der Player mit dem übergebenen Symbol ein kleines Feld gewonnen hat.
  * 
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Miep_HD 
+ * @version 27.03.2022
  */
 public class Gewonnen
 {
