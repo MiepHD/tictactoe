@@ -4,16 +4,23 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 /**
  * zeichneBoard
+ * Erstellt aus dem board einen Text, der versendet werden kann und gibt diesen zurück.
  * 
  * generiereBoard
+ * Generiert das Board. (Beinhaltet nur grüne Felder)
  * 
  * place
  * 
+ * 
  * placeSymbol
+ * Setzt Symbol bei number.
  * 
  * zeichneGreen
  * 
+ * allGreen
+ * Zeichnet alles Grün, falls das Zielfeld bereits belegt ist.
  * 
+ * feldFaerben
  * 
  * @author Miep_HD
  * @version 28.03.2022
@@ -76,11 +83,10 @@ public class Board
         String antwort = null;
         if (board.get(number) == green) {
             int target = Feld.finde(number, feldgruppen);
-            int startfeld = Feld.berechneStart(target);
-            zeichneGreen(target, startfeld);
+            zeichneGreen(target);
             symbol = placeSymbol(number);
             int new_target = Feld.finde(number, map_feldgruppen);
-            startfeld = Feld.berechneStart(new_target);
+            int startfeld = Feld.berechneStart(new_target);
             boolean kleinfeldgewonnen = false;
             boolean spielgewonnen = false;
             if (Gewonnen.Kleinfeld(startfeld, map_feldgruppen, winningconditions, symbol)) {
@@ -91,7 +97,6 @@ public class Board
                     bigboard.set(new_target, "p1");
                     symbol = "p1";
                 }
-                //Zeichne alles Grün, falls das Zielfeld bereits belegt ist
                 if (target == new_target) {
                     allGreen();
                 }
@@ -174,7 +179,8 @@ public class Board
             }
         }
     }
-    public void zeichneGreen(int target, int startfeld) {
+    public void zeichneGreen(int target) {
+        int startfeld = Feld.berechneStart(target);
         if (bigboard.get(target) == "p0") {
             for (int i = 0; i <= 80; i++) {
                 if (board.get(i) == green) {
