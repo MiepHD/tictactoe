@@ -1,10 +1,20 @@
 import java.util.ArrayList;
 
 /**
- * Beschreiben Sie hier die Klasse Feld.
+ * berechneStart
+ * target = 0..8
+ * startfeld = 0..80
+ * spalte = 0..2
+ * zeile = 0..2
+ * Berechnet den absoluten Wert(startfeld) des Feldes, das links oben in dem größeren Feld(target) ist.
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * finde
+ * Findet heraus in welchem Feld die eingegebene Nummer liegt.
+ * Wird genutzt zur Berechnung des Startfeldes aus der absoluten Zahl (bei Input: gruppe = feldgruppen)
+ * Auch genutzt,um festzustellen in welchem Feld sich die Zahl befindet (bei Input gruppen = map_feldgruppen)
+ * 
+ * @author Miep_HD
+ * @version 27.03.2022
  */
 public class Feld
 {
