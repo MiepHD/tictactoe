@@ -2,6 +2,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 /**
  * Klasse versendet Nachrichten
+ * sendTemporaryMessage sendet eine Nachricht, die es wieder löscht, bevor die nächste versendet wird
+ * sendMessage versendet ausschließlich eine Nachricht
  * 
  * @author Miep_HD
  * @version 28.03.2022

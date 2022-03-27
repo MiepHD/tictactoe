@@ -2,13 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Beschreiben Sie hier die Klasse Feldgruppen.
+ * Der ArrayGenerator erstellt ArrayListen und gibt diese zurück.
+ * Der ArrayGenerator kann folgende ArrayListen erstellen:
+ * *mapFeldgruppen
+ * *bigBoard
+ * *winningConditions
+ * *feldgruppen
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * 
+ * @author Miep_HD
+ * @version 28.03.2022
  */
 public class ArrayGenerator {
-    public ArrayList map_feldgruppen() {
+    public ArrayList mapFeldgruppen() {
         ArrayList<Integer> felgrup1 = new ArrayList<Integer>(
             List.of(0, 1, 2, 9, 10, 11, 18, 19, 20)
         );
@@ -41,7 +47,7 @@ public class ArrayGenerator {
         );
         return feldgruppen;
     }
-    public ArrayList bigboard() {
+    public ArrayList bigBoard() {
         ArrayList<String> bigboard = new ArrayList<String>();
         for (int i = 1; i <=9; i++) {
             bigboard.add("p0");

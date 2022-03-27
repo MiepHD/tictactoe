@@ -2,16 +2,32 @@ import java.util.ArrayList;
 import java.util.List;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
+/**
+ * zeichneBoard
+ * 
+ * generiereBoard
+ * 
+ * place
+ * 
+ * placeSymbol
+ * 
+ * zeichneGreen
+ * 
+ * 
+ * 
+ * @author Miep_HD
+ * @version 28.03.2022
+ */
+
 public class Board
 {
-    private ArrayList<String> board;
+    static ArrayList<String> board;
     private boolean egal;
     private String green;
     private String white;
     private String kreis;
     private String kreuz;
     private String symbol;
-    private Mathe mathe;
     private ArrayList<String> zahlen;
     private ArrayList<ArrayList<Integer>> feldgruppen;
     private ArrayList<ArrayList<Integer>> map_feldgruppen;
@@ -22,7 +38,6 @@ public class Board
         zahlen = new ArrayList<String>(
             List.of("", "", ":two:", ":three:", ":four:", ":five:", ":six:", ":seven:", ":eight:", ":nine:", "")
         );
-        mathe = new Mathe();
         egal = false;
         board = new ArrayList<String>();
         green = ":green_square:";
@@ -30,9 +45,9 @@ public class Board
         kreis = ":o2:";
         kreuz = ":regional_indicator_x:";
         symbol = "";
-        bigboard = generate.bigboard();
+        bigboard = generate.bigBoard();
         feldgruppen = generate.feldgruppen();
-        map_feldgruppen = generate.map_feldgruppen();
+        map_feldgruppen = generate.mapFeldgruppen();
         winningconditions = generate.winningConditions();
     }
     public String zeichneBoard() {
@@ -42,7 +57,7 @@ public class Board
         String spielfeld_text = ":black_large_square::regional_indicator_a::regional_indicator_b::regional_indicator_c::regional_indicator_d::regional_indicator_e::regional_indicator_f::regional_indicator_g::regional_indicator_h::regional_indicator_i:\n:one:";
         System.out.println("Zeichne Board");
         for (String x : board) {
-            if (mathe.istTeilerVon(i + 1, 9)) {
+            if (Mathe.istTeilerVon(i + 1, 9)) {
                 System.out.println("Erstelle Zeilenumbruch");
                 spielfeld_text = spielfeld_text + x + "\n" + zahlen.get(row);
                 row++;
@@ -63,15 +78,15 @@ public class Board
     public String place(int number, MessageReceivedEvent event) {
         String antwort = null;
         if (board.get(number) == green) {
-            int target = findeFeld(number, feldgruppen);
-            int startfeld = berechneStartfeld(target);
+            int target = Feld.finde(number, feldgruppen);
+            int startfeld = Feld.berechneStart(target);
             zeichneGreen(target, startfeld);
             symbol = placeSymbol(number);
-            int new_target = findeFeld(number, map_feldgruppen);
-            startfeld = berechneStartfeld(new_target);
+            int new_target = Feld.finde(number, map_feldgruppen);
+            startfeld = Feld.berechneStart(new_target);
             boolean kleinfeldgewonnen = false;
             boolean spielgewonnen = false;
-            if (hatKleinfeldGewonnen(startfeld)) {
+            if (Gewonnen.Kleinfeld(startfeld, map_feldgruppen, winningconditions, symbol)) {
                 if (Spielstatus.turn == "p1") {
                     bigboard.set(new_target, "p2");
                     symbol = "p2";
@@ -99,7 +114,7 @@ public class Board
                     }
                 }
                 String spielfeld_text = "";
-                if (hatSpielGewonnen()) {
+                if (Gewonnen.Spiel(bigboard, winningconditions, symbol)) {
                     int p1_punkte;
                     int p2_punkte;
                     int p1_punkte_gesamt = 0;
@@ -180,53 +195,6 @@ public class Board
             return "Feld "+ number +" nicht auswählbar. \n Board: " + board.get(number);
         }
         return antwort;
-    }
-    public boolean hatSpielGewonnen() {
-        for (int i = 0; i <= 7; i++) {
-            if (bigboard.get(winningconditions.get(i).get(0)) == symbol) {
-                if (bigboard.get(winningconditions.get(i).get(1)) == symbol) {
-                    if (bigboard.get(winningconditions.get(i).get(2)) == symbol) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-    public boolean hatKleinfeldGewonnen(int startfeld) {
-        for (int i = 0; i <= 7; i++) {
-            if (board.get(startfeld + map_feldgruppen.get(0).get(winningconditions.get(i).get(0))) == symbol) {
-                if (board.get(startfeld + map_feldgruppen.get(0).get(winningconditions.get(i).get(1))) == symbol) {
-                    if (board.get(startfeld + map_feldgruppen.get(0).get(winningconditions.get(i).get(2))) == symbol) {
-                        System.out.println("Kleines Feld gewonnen");
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-    public int findeFeld(int number, ArrayList<ArrayList<Integer>> gruppe) {
-        System.out.println ("Möglichkeiten: " + gruppe);
-        for (int i = 0; i <= 8; i++) {
-            if (gruppe.get(i).contains(number)) {
-                return i;
-            }
-        }
-        System.out.println("Keine Übereinstimmung gefunden");
-        return -1;
-    }
-    public int berechneStartfeld(int target) {
-        int spalte;
-        int zeile;
-        int startfeld;
-        spalte = target % 3;
-        System.out.println(target + " ist in Spalte " + spalte);
-        zeile = (target - spalte) / 3;
-        System.out.println(target + " ist in Zeile " + zeile);
-        startfeld = zeile * 27 + spalte * 3;
-        System.out.println("Das Startfeld ist: " + startfeld);
-        return startfeld;
     }
     public String placeSymbol(int number) {
         if (Spielstatus.turn == "p1") {

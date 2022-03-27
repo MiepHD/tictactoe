@@ -1,10 +1,12 @@
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 /**
- * Beschreiben Sie hier die Klasse Place.
+ * Zuerst wird geprüft, ob der Autor der Nachricht gerade am Zug ist.
+ * Danach wird aus der Eingabe die absolute Position im Spielfeld berechnet.
+ * Als letztes wird über Spielstatus die place Methode von Board aufgerufen.
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Miep_HD
+ * @version 27.03.2022
  */
 public class Place
 {

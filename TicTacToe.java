@@ -1,5 +1,13 @@
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
+/**
+ * Ordnet player1 und player2 die ID des jeweiligen Users zu.
+ * Setzt turn auf p1 und gibt das Spielfeld zurück, indem es zeichneBoard() aus Board aufruft.
+ * 
+ * @author Miep_HD
+ * @version 28.03.2022
+ */
+
 public class TicTacToe
 {
     private String antwort;

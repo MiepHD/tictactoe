@@ -1,10 +1,20 @@
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.entities.*;
 /**
- * Beschreiben Sie hier die Klasse Main.
+ * Ordnet die empfangene Nachricht einem Befehl zu.
+ * Erstellt daraufhin entsprechendes Objekt und ruft verlangte Methode auf.
+ * Mögliche Befehle sind:
+ * *exit
+ * *tictactoe bzw. *ttt
+ * *p
+ * *abbrechen (Zukünftig)
+ * *help (Zukünftig)
+ * *freigeben (Zukünftig)
+ * *anleitung (Zukünftig)
+ * *toggledarkmode (Zukünftig)
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Miep_HD
+ * @version 27.03.2022
  */
 public class Main
 {
