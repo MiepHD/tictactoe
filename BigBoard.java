@@ -1,10 +1,17 @@
 import java.util.ArrayList;
 
 /**
- * Beschreiben Sie hier die Klasse BigBoard.
+ * Verwaltet das BigBoard.
+ * Das BigBoard enthält die Information darüber wer welches Feld gewonnen hat.
+ * unentschieden
+ * Prüft, ob ein kleines Feld ein Unentschieden ist.
+ * Wenn dies zutrifft, wird die Position auf / gesetzt.
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * update
+ * Ordnet ein großes Feld einem Player zu.
+ * 
+ * @author Miep_HD 
+ * @version 27.03.2022
  */
 public class BigBoard
 {
