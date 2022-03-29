@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Berechnen von Teilern
  * 
- * @author Laila
+ * @author Miep_HD
  * @version 07.02.2022
  */
 public class Mathe {

@@ -27,9 +27,9 @@ public class Gewonnen
     }
     public static boolean Kleinfeld(int startfeld, ArrayList<ArrayList<Integer>> map_feldgruppen, ArrayList<ArrayList<Integer>> winningconditions, String symbol) {
         for (int i = 0; i <= 7; i++) {
-            if (Spielstatus.board.board.get(startfeld + map_feldgruppen.get(0).get(winningconditions.get(i).get(0))) == symbol) {
-                if (Spielstatus.board.board.get(startfeld + map_feldgruppen.get(0).get(winningconditions.get(i).get(1))) == symbol) {
-                    if (Spielstatus.board.board.get(startfeld + map_feldgruppen.get(0).get(winningconditions.get(i).get(2))) == symbol) {
+            if (Spielstatus.board.getBoard().get(startfeld + map_feldgruppen.get(0).get(winningconditions.get(i).get(0))) == symbol) {
+                if (Spielstatus.board.getBoard().get(startfeld + map_feldgruppen.get(0).get(winningconditions.get(i).get(1))) == symbol) {
+                    if (Spielstatus.board.getBoard().get(startfeld + map_feldgruppen.get(0).get(winningconditions.get(i).get(2))) == symbol) {
                         System.out.println("Kleines Feld gewonnen");
                         return true;
                     }

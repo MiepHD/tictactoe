@@ -26,7 +26,7 @@ public class MyEventListener extends ListenerAdapter {
         if (Start.debug == true) System.out.println("Nachricht ausgewertet");
         String antwort = main.onMessage(content, event);
         if (antwort != null) {
-            Nachricht.send(event, antwort);
+            Spielstatus.nachricht.send(event, antwort);
         } else {
             System.out.println("Leere Antwort zurückgekommen. Ist ein Fehler aufgetreten?");
         }

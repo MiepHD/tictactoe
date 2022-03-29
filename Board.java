@@ -30,18 +30,18 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class Board
 {
-    static ArrayList<String> board;
+    private ArrayList<String> board;
     private boolean egal;
     private String green;
     private String white;
     private String kreis;
     private String kreuz;
-    static String symbol;
+    private String symbol;
     private ArrayList<String> zahlen;
     private ArrayList<ArrayList<Integer>> feldgruppen;
     private ArrayList<ArrayList<Integer>> map_feldgruppen;
     private ArrayList<ArrayList<Integer>> winningconditions;
-    
+    private BigBoard bigboard;
     public Board() {
         zahlen = ArrayGenerator.zahlen();
         egal = false;
@@ -51,13 +51,27 @@ public class Board
         kreis = ":o2:";
         kreuz = ":regional_indicator_x:";
         symbol = "";
-        
+        bigboard = new BigBoard();
         feldgruppen = ArrayGenerator.feldgruppen();
         map_feldgruppen = ArrayGenerator.mapFeldgruppen();
         winningconditions = ArrayGenerator.winningConditions();
     }
+    public ArrayList<String> getBoard() {
+        return board;
+    }
+    public void setSymbol(String arg) {
+        if (arg.equals("p1")) {
+            symbol = "p1";
+        } else if (arg.equals("p2")) {
+            symbol = "p2";
+        } else if (arg.equals("")) {
+            symbol = "";
+        } else {
+            System.out.println("Falsches Symbol festgelegt");
+        }
+    }
     public String toggledarkmode() {
-        if (Board.board == null) {
+        if (board == null) {
             if (white.equals(":white_large_square:")) {
                 white = ":black_large_square:";
             } else {
@@ -104,38 +118,38 @@ public class Board
             boolean kleinfeldgewonnen = false;
             boolean spielgewonnen = false;
             if (Gewonnen.Kleinfeld(startfeld, map_feldgruppen, winningconditions, symbol)) {
-                BigBoard.update(new_target);
+                bigboard.update(new_target);
                 if (target == new_target) {
                     allGreen();
                 }
                 feldFaerben(startfeld);
                 String spielfeld_text = "";
-                if (Gewonnen.Spiel(BigBoard.bigboard, winningconditions, symbol)) {
+                if (Gewonnen.Spiel(bigboard.getBigboard(), winningconditions, symbol)) {
                     spielfeld_text = zeichneBoard();
-                    Nachricht.send(event, spielfeld_text);
+                    Spielstatus.nachricht.send(event, spielfeld_text);
                     if (Spielstatus.player1 != Spielstatus.player2) {
-                        Punkte.berechne(symbol, event, BigBoard.bigboard);
+                        Punkte.berechne(symbol, event, bigboard.getBigboard());
                     }
                 }
             }
             if (!kleinfeldgewonnen) {
-                BigBoard.unentschieden(startfeld, kreis, kreuz, target);
+                bigboard.unentschieden(startfeld, kreis, kreuz, target);
             }
             int besetzt = 0;
             if (!spielgewonnen) {
                 antwort = zeichneBoard();
-                for (String element : BigBoard.bigboard) {
+                for (String element : bigboard.getBigboard()) {
                     if (element != "p0") {
                         besetzt++;
                     }
                 }
                 if (besetzt == 9) {
-                    Nachricht.send(event, antwort);
-                    Nachricht.send(event, "Unentschieden!");
+                    Spielstatus.nachricht.send(event, antwort);
+                    Spielstatus.nachricht.send(event, "Unentschieden!");
                     Start.restart();
                     return null;
                 } else {
-                    Nachricht.sendTemporary(event, antwort);
+                    Spielstatus.nachricht.sendTemporary(event, antwort);
                     return null;
                 }
             }
@@ -180,7 +194,7 @@ public class Board
     }
     public void zeichneGreen(int target) {
         int startfeld = Feld.berechneStart(target);
-        if (BigBoard.bigboard.get(target) == "p0") {
+        if (bigboard.getBigboard().get(target) == "p0") {
             for (int i = 0; i <= 80; i++) {
                 if (board.get(i) == green) {
                     board.set(i, white);

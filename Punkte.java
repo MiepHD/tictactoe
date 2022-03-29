@@ -14,11 +14,11 @@ public class Punkte {
         long p1_punkte_gesamt = 0;
         long p2_punkte_gesamt = 0;
         if (symbol == "p1") {
-            Nachricht.send(event, "<@" + Spielstatus.player1 + "> hat gewonnen");
+            Spielstatus.nachricht.send(event, "<@" + Spielstatus.player1 + "> hat gewonnen");
             p1_punkte = 6;
             p2_punkte = 0;
         } else {
-            Nachricht.send(event, "<@" + Spielstatus.player2 + "> hat gewonnen");
+            Spielstatus.nachricht.send(event, "<@" + Spielstatus.player2 + "> hat gewonnen");
             p2_punkte = 6;
             p1_punkte = 0;
         }
@@ -33,8 +33,8 @@ public class Punkte {
         erstelleId(Spielstatus.player2);
         p1_punkte_gesamt = punkteHinzufuegen(p1_punkte);
         p2_punkte_gesamt = punkteHinzufuegen(p2_punkte);
-        Nachricht.send(event, "Player eins hat " + p1_punkte + " Punkte erspielt und hat damit jetzt insgesamt " + p1_punkte_gesamt);
-        Nachricht.send(event, "Player zwei hat " + p2_punkte + " Punkte erspielt und hat damit jetzt insgesamt " + p2_punkte_gesamt);
+        Spielstatus.nachricht.send(event, "Player eins hat " + p1_punkte + " Punkte erspielt und hat damit jetzt insgesamt " + p1_punkte_gesamt);
+        Spielstatus.nachricht.send(event, "Player zwei hat " + p2_punkte + " Punkte erspielt und hat damit jetzt insgesamt " + p2_punkte_gesamt);
         Start.restart();
     }
     public static void erstelleId(String player) {

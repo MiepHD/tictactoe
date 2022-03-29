@@ -32,11 +32,12 @@ public class Spielstatus {
     static String player2;
     static boolean begonnen;
     static Board board;
+    static Nachricht nachricht;
     static ArrayList<Long> data;
     public Spielstatus() {
-        data = new ArrayList<Long>();
         turn = "";
         board = new Board();
         ArrayGenerator generate = new ArrayGenerator();
+        data = new ArrayList<Long>();
     }
 }
