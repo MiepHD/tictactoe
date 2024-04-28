@@ -22,7 +22,6 @@ public class MyEventListener extends ListenerAdapter {
         if (Start.debug == true) System.out.println("Werte Nachricht aus");
         Message message = event.getMessage();
         String content = message.getContentRaw();
-        MessageChannel channel = event.getChannel();
         if (Start.debug == true) System.out.println("Nachricht ausgewertet");
         String antwort = main.onMessage(content, event);
         if (antwort != null) {

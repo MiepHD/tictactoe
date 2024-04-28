@@ -1,4 +1,3 @@
-import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 
@@ -23,14 +22,6 @@ public class Start {
         System.out.println("Erfolgreich angemeldet\nErstelle EventListener");
         jda.addEventListener(new MyEventListener());
         System.out.println("EventListener erfolgreich erstellt");
-        if (args.length >= 2) {
-            if (args[1] == "true") {
-                boolean debug = true;
-                System.out.println("Debug-Modus eingeschaltet");
-            } else {
-                boolean debug = false;
-            }
-        }
         spiel = new Spielstatus();
     }
     public static void restart() {

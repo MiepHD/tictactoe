@@ -1,5 +1,4 @@
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.entities.*;
 /**
  * Ordnet die empfangene Nachricht einem Befehl zu.
  * Erstellt daraufhin entsprechendes Objekt und ruft verlangte Methode auf.

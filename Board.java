@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 /**
@@ -31,7 +30,6 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 public class Board
 {
     private ArrayList<String> board;
-    private boolean egal;
     private String green;
     private String white;
     private String kreis;
@@ -44,7 +42,6 @@ public class Board
     private BigBoard bigboard;
     public Board() {
         zahlen = ArrayGenerator.zahlen();
-        egal = false;
         board = new ArrayList<String>();
         green = ":green_square:";
         white = ":white_large_square:";
@@ -104,7 +101,6 @@ public class Board
     public void generiereBoard() {
         for (int i = 0; i <= 80; i++) {
              board.add(green);
-             egal = true;
         }
     }
     public String place(int number, MessageReceivedEvent event) {

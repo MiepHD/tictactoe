@@ -1,4 +1,3 @@
-import net.dv8tion.jda.api.entities.*;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +36,6 @@ public class Spielstatus {
     public Spielstatus() {
         turn = "";
         board = new Board();
-        ArrayGenerator generate = new ArrayGenerator();
         data = new ArrayList<Long>();
     }
 }
