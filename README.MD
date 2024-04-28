@@ -1,3 +1,5 @@
 # TicTacToe Extended Discord Bot
 
-Übergebe beim Starten als erstes Argument das Token, um den Bot zu starten.
+Play a 9x9 Tictactoe on Discord.
+
+Use your Discord Bot Token as the first parameter
